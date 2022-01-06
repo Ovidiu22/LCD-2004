@@ -1,2 +1,3 @@
 # LCD-2004
-C-library for LCD display 20x4
+A LCD 20x4 library written in C, which can be integrated in bigger C projects.
+It was developed using Atmel Studio and was tested together with Arduino Nano.
