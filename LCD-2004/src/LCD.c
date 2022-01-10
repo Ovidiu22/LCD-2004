@@ -138,8 +138,8 @@ void updateLCDScreen(uint8_t row, char * s1, uint8_t data, char * s2)
 {
 	/* convert data to string [buf] */
 	char data2char[4] = "   ";
-	char charRow[20];
-	char emptyString[] = "                    ";	//20 empty spaces
+	char charRow[21];
+	char emptyString[] = "                     ";	//21 empty spaces
 	
 	if (data != NONE)	{ itoa(data, data2char, 10);}
 	if (strcmp(s1, "NONE") == 0 ) { s1 = ""; }
