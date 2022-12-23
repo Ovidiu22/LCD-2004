@@ -17,20 +17,6 @@ void initLCD(void)
 
 	/* Initialize the LCD controller as determined by instructions */
 	lcd_init_4f();
-	
-	_delay_ms(100);
-}
-
-/* *****************************************************************
-Name:		displayLCD_main
-Inputs:		two pointers to a uint8 type data and 2 values, one for each row
-Outputs:	none
-Description:displays on the screen the data passed to the input
-******************************************************************** */
-void displayLCD_main(uint8_t drow, char * s1, uint8_t d1, char * s2)
-{
-	/* Write text on the LCD */
-	updateLCDScreen(drow, s1, d1, s2);
 }
 
 /* *****************************************************************
@@ -62,7 +48,7 @@ Description:initializes the LCD for 4-bit data interface; uses the
 void lcd_init_4f(void)
 {
 	/* Power-up delay */
-	_delay_ms(100);                                 // initial 40 mSec delay
+	_delay_ms(50);                                 // initial 40 mSec delay
 
 	/* IMPORTANT - At this point the LCD module is in the 8-bit mode and it is expecting to receive
 	   8 bits of data, one bit on each of its 8 data lines, each time the 'E' line is pulsed.
@@ -151,19 +137,19 @@ void updateLCDScreen(uint8_t row, char * s1, uint8_t data, char * s2)
 		
 	switch(row) {
 		case 1: /* ======= Line 1 ======= */
-			lcd_write_instruction_4f(lcd_SetCursor | lcd_LineOne); _delay_ms(50);
+			lcd_write_instruction_4f(lcd_SetCursor | lcd_LineOne);
 			break;
 		case 2: /* ======= Line 2 ======= */
-			lcd_write_instruction_4f(lcd_SetCursor | lcd_LineTwo); _delay_ms(50);
+			lcd_write_instruction_4f(lcd_SetCursor | lcd_LineTwo);
 			break;
 		case 3: /* ======= Line 3 ======= */
-			lcd_write_instruction_4f(lcd_SetCursor | lcd_LineThree); _delay_ms(50);
+			lcd_write_instruction_4f(lcd_SetCursor | lcd_LineThree);
 			break;
 		case 4: /* ======= Line 4 ======= */
-			lcd_write_instruction_4f(lcd_SetCursor | lcd_lineFour); _delay_ms(50);
+			lcd_write_instruction_4f(lcd_SetCursor | lcd_lineFour);
 			break;
 	}
-	lcd_write_string_4f((unsigned char*) charRow); _delay_ms(50);
+	lcd_write_string_4f((unsigned char*) charRow);
 }
 
 /* *****************************************************************
@@ -292,4 +278,16 @@ void lcd_check_BF_4(void)
     set_D7_output;                  // reset D7 data direction to output	
 }
 
-
+/* *****************************************************************
+Name:		clearScreen
+Inputs:		none
+Outputs:	none
+Description:clears screen (all four lines)
+******************************************************************** */
+void clearScreen(void)
+{
+	updateLCDScreen(1, "CLEAR", NONE, "NONE" );
+	updateLCDScreen(2, "CLEAR", NONE, "NONE" );
+	updateLCDScreen(3, "CLEAR", NONE, "NONE" );
+	updateLCDScreen(4, "CLEAR", NONE, "NONE" );
+}

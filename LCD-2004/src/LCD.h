@@ -133,7 +133,6 @@
 	void configLCDPorts(void);
 	
 	void updateLCDScreen(uint8_t, char *, uint8_t, char *);
-	void displayLCD_main(uint8_t, char *, uint8_t, char *);
-	
+	void clearScreen(void);
 
 #endif /* DEFINESLCD_H_ */
